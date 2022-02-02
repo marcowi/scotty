@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Nähidee - Scotty</title>
+
+    <script src="js/pdf.js" type="application/javascript"></script>
+    <script src="js/scotty.js" type="application/javascript"></script>
+    <link rel="stylesheet" href="css/scotty.css">
+
+</head>
+
+<body>
+
+<div id="container">
+
+    <div id="controls">
+
+        <h1 style="width: 100%;text-align: center;">Scotty</h1>
+
+        <label for="input-file" class="label-input-file button-control">
+            PDF laden
+        </label>
+        <input type="file" id="input-file" />
+
+        <div class="control-wrapper layers">
+            <div class="title"></div>
+            <div id="layers"></div>
+        </div>
+
+        <div class="control-wrapper colors">
+            <div class="title"></div>
+            <div id="colors"></div>
+        </div>
+
+
+        <div class="control-group">
+            <label for="input-scale">Skalierung:</label>
+            <input id="input-scale" type="number" value="0.25"/>
+        </div>
+
+        <div class="control-group">
+            <label for="input-rotation">Rotation:</label>
+            <input id="input-rotation" type="number" value="0"/>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="360" value="0" class="slider" id="slider-ratation">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label for="input-color-override">Einfärben:</label>
+            <input id="input-color-override" type="color" value="#00FFEE"/>
+            <input id="input-color-override-checkbox" type="checkbox"/>
+            <button type="button" class="button-control" onclick="scotty.toggleBackground()">Hintergrund umschalten</button>
+        </div>
+
+        <button type="button" class="button-control" onclick="scotty.refresh()">Aktualisieren</button>
+
+    </div>
+    <div id="toggle-controls" onclick="scotty.toggleControls()"><<</div>
+    <div id="canvas-wrapper">
+        <canvas id="canvas"></canvas>
+    </div>
+</div>
+
+<script>
+    scotty.init();
+</script>
+
+</body>
+</html>

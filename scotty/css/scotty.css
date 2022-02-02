@@ -1,0 +1,222 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    color: white;
+    font-family: monospace;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+#canvas {
+    position: absolute;
+    filter: invert(0%);
+}
+
+#canvas-wrapper {
+    cursor: grab;
+    overflow: auto;
+}
+
+#toggle-controls {
+    display: flex;
+    flex: 0 0 1.5em;
+    background-color: #333333;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-left: 1px solid #111111;
+}
+
+#toggle-controls:hover {
+    background-color: #111111;
+}
+
+#controls {
+    flex: 0 0 15em;
+    background-color: #333333;
+    z-index: 1;
+}
+
+.control-wrapper {
+    min-height: 200px;
+    padding: 4px;
+}
+
+.control-wrapper .title {
+    color: white;
+}
+
+.control-group {
+    padding: 2em .5em 2em .5em;
+}
+
+.control-wrapper.layers, .control-wrapper.colors {
+    display: none;
+}
+
+#layers div {
+    cursor: pointer;
+    color: #9f9f9f;
+    padding: .5em .5em .5em .5em;
+    font-size: 1.0em;
+    line-height: 1.0em;
+}
+
+#layers div:hover {
+    background-color: #111111;
+}
+
+#colors > div {
+    cursor: pointer;
+    color: #9f9f9f;
+    padding: .5em .5em .5em .5em;
+    font-size: 1.2em;
+    line-height: 1.2em;
+}
+
+#colors > div:hover {
+    background-color: #111111;
+}
+
+.color-preview {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    float: left;
+}
+
+.color-visibility {
+    display: inline-block;
+    padding-left: 4px;
+    color: red;
+}
+
+#colors > div.visible .color-visibility {
+    color: green;
+}
+
+.color-text {
+    display: inline-block;
+    padding-left: 4px;
+}
+
+.layer-visibility {
+    display: inline-block;
+    padding-left: 4px;
+    color: red;
+}
+
+#layers > div.visible .layer-visibility {
+    color: green;
+}
+
+.layer-text {
+    display: inline-block;
+    padding-left: 4px;
+}
+
+
+button {
+    line-height: 2em;
+}
+
+label {
+    float: left;
+    margin-left: 5%;
+    margin-top: 1em;
+    font-size: 1em;
+    line-height: 2em;
+}
+
+input[type="number"] {
+    float: right;
+    margin-right: 5%;
+    width: 40%;
+    text-align: center;
+    margin-top: 1em;
+    line-height: 1.5em;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+input[type="color"] {
+    float: right;
+    margin-right: 5%;
+    width: 20%;
+    margin-top: 1em;
+    line-height: 1.5em;
+}
+
+input[type="checkbox"] {
+    float: right;
+    margin-right: 5%;
+    width: 15%;
+    margin-top: 1.5em;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.label-input-file {
+    float: none;
+    display: inline-block;
+}
+
+.button-control {
+    border: 1px solid #18ff4a;
+    background-color: #333333;
+    color: white;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.button-control:hover {
+    background-color: #111111;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #04AA6D;
+    cursor: pointer;
+}
