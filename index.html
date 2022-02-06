@@ -23,6 +23,14 @@
         </label>
         <input type="file" id="input-file" />
 
+        <div class="control-group pages">
+            <label for="input-pagenum">Seite:</label>
+            <input id="input-pagenum" type="number" value="1"/>
+            <div class="slidecontainer">
+                <input type="range" min="1" max="1" value="1" class="slider" id="slider-pagenum">
+            </div>
+        </div>
+
         <div class="control-wrapper layers">
             <div class="title"></div>
             <div id="layers"></div>

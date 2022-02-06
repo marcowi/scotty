@@ -15,6 +15,7 @@ const scotty = {
     mouseDownHandle: null,
     mouseMoveHandle: null,
     mouseUpHandle: null,
+    currentPage: 1,
 
     init: function () {
         this.pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -47,6 +48,12 @@ const scotty = {
             fileReader.readAsArrayBuffer(file);
         });
 
+        document.getElementById("slider-pagenum").addEventListener('input', function () {
+            let pageNum = parseInt(this.value);
+            document.getElementById("input-pagenum").value = pageNum;
+            that.currentPage = pageNum;
+        });
+
     },
 
     load: function (file) {
@@ -54,18 +61,33 @@ const scotty = {
         const loadingTask = pdfjsLib.getDocument(file);
         let that = this;
 
-        // that.colorReplacements = {};
+        that.currentPage = 1;
+
         that.pos = {top: 0, left: 0, x: 0, y: 0};
+
 
         loadingTask.promise.then(function(pdf) {
             that.currentPDF = pdf;
             that.occp = that.currentPDF.getOptionalContentConfig();
+            that.clearLayerControls();
             that.occp.then(function (occ) {
                 that.occ = occ;
                 that.occ._groups.forEach(function (value, key) {
                     that.addLayerControl({id: key, name: value.name, visible: value.visible});
                 })
             });
+
+            let pageCount = that.currentPDF.numPages;
+            if (pageCount > 1) {
+                document.querySelector(".control-group.pages").style.display = "block";
+                let pageSlider = document.getElementById("slider-pagenum");
+                pageSlider.setAttribute("max", pageCount);
+            } else {
+                document.querySelector(".control-group.pages").style.display = "none";
+                let pageSlider = document.getElementById("slider-pagenum");
+                pageSlider.setAttribute("max", "1");
+                document.getElementById("input-pagenum").value = 1;
+            }
 
             that.render();
 
@@ -77,9 +99,8 @@ const scotty = {
     render: function () {
 
         let that = this;
-        let pageNumber = 1;
 
-        that.currentPDF.getPage(pageNumber).then(function(page) {
+        that.currentPDF.getPage(that.currentPage).then(function(page) {
 
             let scale = document.getElementById("input-scale").value;
             let rotation = document.getElementById("input-rotation").value;
@@ -171,6 +192,11 @@ const scotty = {
         }.bind(this));
         let layerControlList = document.getElementById("layers");
         layerControlList.append(layerControl);
+    },
+
+    clearLayerControls: function () {
+        let layerControlList = document.getElementById("layers");
+        layerControlList.innerHTML = "";
     },
 
     addColorControl: function (color) {
